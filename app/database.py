@@ -1,7 +1,11 @@
 from sqlalchemy import create_engine
+import pymysql
  # 데이터베이스 주소 -> 연결 url
-engine = create_engine( encoding='utf-8')
+# engine = create_engine( encoding='utf-8')
 
+
+db = pymysql.connect(host="localhost",user ="root" , password= "aa77447769",charset="utf8")
+print(db)
 # create_engine :  인자값으로 DB URL을 추가하면 DB Host에 DB 연결을 생성한다. 이 함수가 DB연결의 출발점이다.
 # sessionmaker : 호출되었을 때, 세션을 생성해준다.
 # autocommit : api가 호출되어 DB의 내용이 변경된 경우, 자동으로 commit하며 변경할지에 대한 여부를 결정한다. False로 지정한 경우에는, insert, update, delete 등으로 내용이 변경됬을 때, 수동적으로 commit을 진행해주어야 한다.
