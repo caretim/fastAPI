@@ -18,7 +18,6 @@ class Model(BaseModel):
 async def root():
     return {"message": "루트페이지"}
 
-
 @app.get("/login")
 async def root():
     return {"signup": "회원가입페이지"}
@@ -34,3 +33,15 @@ async def cat():
 def data받음(data:Model):
     print(data)
     return '전송완료'
+
+
+
+
+@app.get("/items/{item_id}")
+async def read_item(item_id: int):
+    return {"item_id": item_id}
+
+
+# 함수가 받은(반환도 하는) 값은 문자열 "3"이 아니라 파이썬 int 형인 3입니다.
+
+# 즉, 타입 선언을 하면 FastAPI는 자동으로 요청을 "파싱"합니다.
