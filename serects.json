@@ -1,0 +1,9 @@
+{
+    "DB": {
+        "user": "root",
+        "password": "aa77447769",
+        "host": "localhost",
+        "port": 3306,
+        "database": "fastapi_db"
+    }
+}
