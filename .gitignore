@@ -139,6 +139,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+serects.json
 
 # Spyder project settings
 .spyderproject
@@ -283,5 +284,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
 
 # End of https://www.toptal.com/developers/gitignore/api/python,django,windows
