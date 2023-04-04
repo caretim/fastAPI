@@ -1,18 +1,21 @@
-from itertools import combinations
-n,m,k= map(int,input().split())
+import sys
+input = sys.stdin.readline
+
+N = int(input())
+
+straw=[]
+for _ in range(N):
+    straw.append(int(input()))
+
+straw.sort()
 
 
-all_com = [*combinations( [i for i in range(n)],m)]
+result = 0
+for i in range(len(straw)-2):
+    if straw[i] < straw[i+1] + straw[i+2]:
+        result = straw[i] + straw[i+1] + straw[i+2]
+        break
+    else:
+        result=-1
 
-result= 0
-
-for a in all_com:
-    count =0
-    for j in range(m):
-        if a[j]<m:
-            count+=1
-    if count>=k:
-        result+=1
-    
-print(result/len(all_com))
-        
+print(result)

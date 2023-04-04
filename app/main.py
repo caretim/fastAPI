@@ -22,6 +22,8 @@ class Item(BaseModel):
     name: str
     price: float
     is_offer: Union[bool , None] = None
+    #None 명시는 초기값으로 필수로 안받아도 된다는뜻, 
+    # 만약 설정을 안한다면 필수로 받아야함
     
 @app.get("/")
 async def root():
@@ -32,7 +34,7 @@ async def root():
     return {"signup": "회원가입페이지"}
 
 
-@app.put("/items/{item_id}") 
+@app.put("/items/{item_id}/") 
 def update_item(item_id:int , item = Item):
     return{"item_name":item.name, "item_id":item_id}
 ## 흠.. 모델메타클래스는 시리얼라이저를 왜 사용이 안되지? 
@@ -44,10 +46,9 @@ async def read_item(item_id: int, q: Union[str,None] = None):
     return {"item_id": item_id , "q": q} 
 
 
-@app.post('/create')
-async def create_questions(title:str):
-    q = Question
-    return {"생성완료"}
+@app.post('/items/')
+async def create_item(item: Item) -> Item:
+    return item
 
 
 # 함수가 받은(반환도 하는) 값은 문자열 "3"이 아니라 파이썬 int 형인 3입니다.
