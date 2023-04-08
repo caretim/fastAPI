@@ -4,7 +4,10 @@ from pydantic import BaseModel
 from typing import Optional
 from database import engine
 from models import Question,Answer
+from datetime import datetime
 import models
+
+from database import get_db
 # 경로 동작은 순차적으로 지원됨 동일 경로롤 지나칠때 상위 경로에 지정되어있는주소가 있다면
 # 그 주소로 먼저 도착하게됨, 개인페이지 이동시, user/me와 user/{user_id}일때, me를 먼저 선언해줘야 찾아갈 수 있음
 #
@@ -55,3 +58,9 @@ async def create_item(item: Item) -> Item:
 
 # 즉, 타입 선언을 하면 FastAPI는 자동으로 요청을 "파싱"합니다.
 
+@app.post('/test')
+def test(item:Item)-> Item:
+    q = Question(subject='FastAPI 모델 질문입니다.', content='id는 자동으로 생성되나요?', create_date=datetime.now())
+    get_db.add(q)
+    get_db.commit()
+    return "저장완료"
